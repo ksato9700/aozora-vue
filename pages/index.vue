@@ -10,19 +10,20 @@
       <div class="text-xs-left">
         <aozora-logo/>
       </div>
-      <v-card>
-        <v-card-title class="headline">インターネットの電子図書館、青空文庫へようこそ。</v-card-title>
-      </v-card>
     </v-flex>
+    <h2>インターネットの電子図書館、青空文庫へようこそ。</h2>
+    <search/>
   </v-layout>
 </template>
 
 <script>
 import AozoraLogo from '~/components/AozoraLogo.vue'
+import Search from '~/components/Search.vue'
 
 export default {
   components: {
-    AozoraLogo
+    AozoraLogo,
+    Search
   }
 }
 </script>
