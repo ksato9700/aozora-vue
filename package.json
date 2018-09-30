@@ -1,8 +1,8 @@
 {
   "name": "aozora-nuxt",
-  "version": "1.0.0",
-  "description": "My striking Nuxt.js project",
-  "author": "Ken Sato",
+  "version": "0.1.0",
+  "description": "A new UI for Aozora Bunko",
+  "author": "Kenichi Sato",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
