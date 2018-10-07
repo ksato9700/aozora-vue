@@ -61,7 +61,7 @@ module.exports = {
     prefix: '/api/v0.1',
     host: process.env.AOZORA_API_HOST || 'localhost',
     port: process.env.AOZORA_API_PORT || '5000',
-    debug: false
+    debug: process.env.AXIOS_DEBUG || false
   },
 
   /*
