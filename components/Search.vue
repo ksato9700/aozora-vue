@@ -13,32 +13,59 @@
         @click:append="do_search"/>
     </v-form>
     <p v-if="not_found">見つかりませんでした</p>
-    <h3 v-if="titles && titles.length">作品名</h3>
-    <v-list>
-      <v-list-tile
-        v-for="(book, i) in titles"
-        :key="i"
-      >
-        <v-list-tile-content>
-          <v-list-tile-title>
-            {{ book.title }}
-          </v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-    </v-list>
-    <h3 v-if="persons && persons.length">著者</h3>
-    <v-list>
-      <v-list-tile
-        v-for="(person, i) in persons"
-        :key="i"
-      >
-        <v-list-tile-content>
-          <v-list-tile-title>
-            {{ person.last_name + ' ' + person.first_name }}
-          </v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-    </v-list>
+    <v-card v-if="books && books.length">
+      <v-toolbar
+        color="#000063"
+        dark
+        flat>
+        <v-toolbar-title>作品名</v-toolbar-title>
+      </v-toolbar>
+      <v-list
+        two-line>
+        <v-list-tile
+          v-for="book in books"
+          :key="book.book_id"
+          :href="book.html_url">
+          <!--
+          -->
+          <v-list-tile-content>
+            <v-list-tile-title>
+              {{ book.title }}
+            </v-list-tile-title>
+            <v-list-tile-sub-title>
+              {{ book.subtitle }}
+            </v-list-tile-sub-title>
+          </v-list-tile-content>
+          <v-list-tile-action>
+            <v-btn
+              :to="{path: '/book/' + book.book_id}"
+              icon
+              ripple>
+              <v-icon color="grey lighten-1">info</v-icon>
+            </v-btn>
+          </v-list-tile-action>
+        </v-list-tile>
+      </v-list>
+    </v-card>
+    <v-card v-if="persons && persons.length">
+      <v-toolbar
+        color="#000063"
+        dark
+        flat>
+        <v-toolbar-title>著者名</v-toolbar-title>
+      </v-toolbar>
+      <v-list>
+        <v-list-tile
+          v-for="(person, i) in persons"
+          :key="i">
+          <v-list-tile-content>
+            <v-list-tile-title>
+              {{ person.last_name + ' ' + person.first_name }}
+            </v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-card>
   </v-container>
 </template>
 
@@ -50,18 +77,11 @@ export default {
   data() {
     return {
       search: null,
-      titles: null,
+      books: null,
       persons: null,
       not_found: false
     }
   },
-  /*
-  watch: {
-    search: (val, oldval) => {
-      console.log('search', val, oldval)
-    }
-  },
-  */
   methods: {
     do_search: function() {
       // console.log('this.search=', this.search)
@@ -69,21 +89,18 @@ export default {
       axios
         .get(baseurl + '/books?title=/' + this.search + '/&limit=10')
         .then(res => {
-          this.titles = res.data
+          this.books = res.data
           return axios.get(
             baseurl + '/persons?name=' + this.search + '&limit=10'
           )
         })
         .then(res => {
           this.persons = res.data
-          if (this.titles.length == 0 && this.persons.length == 0) {
+          if (this.books.length == 0 && this.persons.length == 0) {
             this.not_found = true
           }
         })
     }
-  },
-  not_found: function() {
-    return
   }
 }
 </script>
