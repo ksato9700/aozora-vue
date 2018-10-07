@@ -1,17 +1,5 @@
 <template>
   <v-container>
-    <v-form
-      ref="searchForm"
-      class="lighten-3 pa-2"
-      lazy-validation
-      @submit.prevent="do_search">
-      <v-text-field
-        v-model="search"
-        box
-        append-icon="search"
-        placeholder="作品名・著者名"
-        @click:append="do_search"/>
-    </v-form>
     <p v-if="not_found">見つかりませんでした</p>
     <v-card v-if="books && books.length">
       <v-toolbar
@@ -72,32 +60,19 @@
 
 <script>
 export default {
-  data() {
-    return {
-      search: null,
-      books: null,
-      persons: null,
-      not_found: false
+  props: {
+    books: {
+      type: Array,
+      required: true
+    },
+    persons: {
+      type: Array,
+      required: true
     }
   },
-  methods: {
-    do_search: function() {
-      // console.log('this.search=', this.search)
-      this.not_found = false
-      this.$axios
-        .$get('/books?title=/' + this.search + '/&limit=10')
-        .then(books => {
-          this.books = books
-          // console.log(this.books)
-          return this.$axios.$get('/persons?name=' + this.search + '&limit=10')
-        })
-        .then(persons => {
-          this.persons = persons
-          // console.log(this.persons)
-          if (this.books.length == 0 && this.persons.length == 0) {
-            this.not_found = true
-          }
-        })
+  data() {
+    return {
+      not_found: this.books.length == 0 && this.persons.length == 0
     }
   }
 }
