@@ -71,8 +71,6 @@
 
 
 <script>
-import axios from 'axios'
-const baseurl = 'http://localhost:5000/api/v0.1'
 export default {
   data() {
     return {
@@ -86,16 +84,16 @@ export default {
     do_search: function() {
       // console.log('this.search=', this.search)
       this.not_found = false
-      axios
-        .get(baseurl + '/books?title=/' + this.search + '/&limit=10')
-        .then(res => {
-          this.books = res.data
-          return axios.get(
-            baseurl + '/persons?name=' + this.search + '&limit=10'
-          )
+      this.$axios
+        .$get('/books?title=/' + this.search + '/&limit=10')
+        .then(books => {
+          this.books = books
+          // console.log(this.books)
+          return this.$axios.$get('/persons?name=' + this.search + '&limit=10')
         })
-        .then(res => {
-          this.persons = res.data
+        .then(persons => {
+          this.persons = persons
+          // console.log(this.persons)
           if (this.books.length == 0 && this.persons.length == 0) {
             this.not_found = true
           }

@@ -1,4 +1,5 @@
 const pkg = require('./package')
+require('dotenv').config()
 
 module.exports = {
   mode: 'spa',
@@ -43,13 +44,24 @@ module.exports = {
   */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/dotenv',
   ],
+
+  env: {
+    AOZORA_API_HOST: process.env.AOZORA_API_HOST,
+    AOZORA_API_PORT: process.env.AOZORA_API_PORT,
+  },
   /*
   ** Axios module configuration
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+
+    prefix: '/api/v0.1',
+    host: process.env.AOZORA_API_HOST || 'localhost',
+    port: process.env.AOZORA_API_PORT || '5000',
+    debug: false
   },
 
   /*
