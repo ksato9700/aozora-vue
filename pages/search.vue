@@ -3,29 +3,39 @@
     column
     justify-center
     align-center>
-    <search
-      :books="books"
-      :persons="persons" />
+    <v-container>
+      <search/>
+      <search-result
+        :books="books"
+        :persons="persons" />
+    </v-container>
   </v-layout>
 </template>
 
 <script>
 import Search from '~/components/Search.vue'
+import SearchResult from '~/components/SearchResult.vue'
+
+const do_search = async function(axios, q) {
+  const books = await axios.$get('/books?title=/' + q + '/&limit=10')
+  const persons = await axios.$get('/persons?name=' + q + '&limit=10')
+  return { books, persons }
+}
+
 export default {
   components: {
-    Search
+    Search,
+    SearchResult
+  },
+  beforeRouteUpdate(to, from, next) {
+    do_search(this.$axios, to.query.q).then(res => {
+      this.books = res.books
+      this.persons = res.persons
+      next()
+    })
   },
   async asyncData({ app, query }) {
-    const books = await app.$axios.$get(
-      '/books?title=/' + query.q + '/&limit=10'
-    )
-    const persons = await app.$axios.$get(
-      '/persons?name=' + query.q + '&limit=10'
-    )
-    return {
-      books: books,
-      persons: persons
-    }
+    return do_search(app.$axios, query.q)
   }
 }
 </script>
