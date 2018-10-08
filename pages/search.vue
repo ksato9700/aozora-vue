@@ -34,7 +34,8 @@ export default {
       next()
     })
   },
-  async asyncData({ app, query }) {
+  async asyncData({ app, query, store }) {
+    console.log('search: asyncData', store.state.stars.list)
     return do_search(app.$axios, query.q)
   }
 }

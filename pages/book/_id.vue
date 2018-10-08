@@ -3,16 +3,16 @@
     column
     justify-center
     align-center>
-    <book :book="book" />
+    <book-card :book="book" />
   </v-layout>
 </template>
 
 <script>
-import Book from '~/components/Book.vue'
+import BookCard from '~/components/BookCard.vue'
 
 export default {
   components: {
-    Book
+    BookCard
   },
   async asyncData({ app, params }) {
     return {

@@ -37,10 +37,17 @@
       <v-spacer/>
       <v-toolbar-items>
         <v-btn
+          :to="{path: '/favorite'}"
           flat
-          dark
-          href="/about"
-        ><v-icon>info</v-icon></v-btn>
+          dark>
+          <v-icon>star</v-icon>
+        </v-btn>
+        <v-btn
+          :to="{path: '/about'}"
+          flat
+          dark>
+          <v-icon>info</v-icon>
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-content>
@@ -66,6 +73,7 @@ export default {
       fixed: false,
       items: [
         { icon: 'home', title: 'トップ', to: '/' },
+        { icon: 'star', title: 'お気に入り', to: '/favorite' },
         { icon: 'info', title: '青空文庫について', to: '/about' }
       ],
       miniVariant: false,
