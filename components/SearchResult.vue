@@ -22,6 +22,27 @@
               {{ book.subtitle }}
             </v-list-tile-sub-title>
           </v-list-tile-content>
+          <v-spacer/>
+          <v-list-tile-action>
+            {{ book.authors[0].last_name + book.authors[0].first_name }}
+          </v-list-tile-action>
+          <v-list-tile-action>
+            <v-btn
+              icon
+              ripple
+              @click.prevent="toggle(book.book_id)">
+              <v-icon
+                v-if="included()(book.book_id)"
+                color="yellow darken-2">
+                star
+              </v-icon>
+              <v-icon
+                v-else
+                color="grey lighten-1">
+                star_border
+              </v-icon>
+            </v-btn>
+          </v-list-tile-action>
           <v-list-tile-action>
             <v-btn
               :to="{path: '/book/' + book.book_id}"
@@ -57,6 +78,8 @@
 
 
 <script>
+import { mapGetters, mapMutations } from 'vuex'
+
 export default {
   props: {
     books: {
@@ -72,6 +95,14 @@ export default {
     return {
       not_found: this.books.length == 0 && this.persons.length == 0
     }
+  },
+  methods: {
+    ...mapGetters({
+      included: 'stars/included'
+    }),
+    ...mapMutations({
+      toggle: 'stars/toggle'
+    })
   }
 }
 </script>
