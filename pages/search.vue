@@ -35,7 +35,7 @@ export default {
     })
   },
   async asyncData({ app, query, store }) {
-    console.log('search: asyncData', store.state.stars.list)
+    // console.log('search: asyncData', store.state.stars.list)
     return do_search(app.$axios, query.q)
   }
 }

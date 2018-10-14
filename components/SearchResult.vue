@@ -51,7 +51,7 @@ export default {
     }
   },
   data() {
-    console.log('data', this)
+    // console.log('data', this)
     return {
       not_found: this.books.length == 0 && this.persons.length == 0
     }

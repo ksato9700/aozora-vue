@@ -1,4 +1,4 @@
-# aozora-nuxt
+# aozora-vue
 
 A trial of a new user interface for Aozora Bunko contents using [Nuxt](https://nuxtjs.org/)
 
