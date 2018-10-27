@@ -37,6 +37,12 @@
       <v-spacer/>
       <v-toolbar-items>
         <v-btn
+          :to="{path: '/latest'}"
+          flat
+          dark>
+          <v-icon>new_releases</v-icon>
+        </v-btn>
+        <v-btn
           :to="{path: '/favorite'}"
           flat
           dark>
@@ -73,6 +79,7 @@ export default {
       fixed: false,
       items: [
         { icon: 'home', title: 'トップ', to: '/' },
+        { icon: 'new_releases', title: '新着', to: '/latest' },
         { icon: 'star', title: 'お気に入り', to: '/favorite' },
         { icon: 'info', title: '青空文庫について', to: '/about' }
       ],
