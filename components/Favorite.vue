@@ -3,10 +3,11 @@
     <v-toolbar
       color="#000063"
       dark
-      flat>
+      flat
+    >
       <v-toolbar-title>お気に入り</v-toolbar-title>
     </v-toolbar>
-    <book-list :books="books"/>
+    <book-list :books="books" />
   </v-card>
 </template>
 

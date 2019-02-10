@@ -2,12 +2,14 @@
   <v-layout
     column
     justify-center
-    align-center>
+    align-center
+  >
     <v-container>
-      <search/>
+      <search />
       <search-result
         :books="books"
-        :persons="persons" />
+        :persons="persons"
+      />
     </v-container>
   </v-layout>
 </template>
@@ -34,7 +36,7 @@ export default {
       next()
     })
   },
-  async asyncData({ app, query, store }) {
+  async asyncData({ app, query }) {
     // console.log('search: asyncData', store.state.stars.list)
     return do_search(app.$axios, query.q)
   }

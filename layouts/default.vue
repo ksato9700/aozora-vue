@@ -1,22 +1,22 @@
 <template>
   <v-app baseline>
     <v-navigation-drawer
+      v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
-      v-model="drawer"
       fixed
       app
     >
       <v-list>
         <v-list-tile
           v-for="(item, i) in items"
-          :to="item.to"
           :key="i"
+          :to="item.to"
           router
           exact
         >
           <v-list-tile-action>
-            <v-icon v-html="item.icon" />
+            <v-icon />
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title v-text="item.title" />
@@ -33,25 +33,28 @@
       app
     >
       <v-toolbar-side-icon @click="drawer = !drawer" />
-      <v-toolbar-title v-text="title"/>
-      <v-spacer/>
+      <v-toolbar-title v-text="title" />
+      <v-spacer />
       <v-toolbar-items>
         <v-btn
           :to="{path: '/latest'}"
           flat
-          dark>
+          dark
+        >
           <v-icon>new_releases</v-icon>
         </v-btn>
         <v-btn
           :to="{path: '/favorite'}"
           flat
-          dark>
+          dark
+        >
           <v-icon>star</v-icon>
         </v-btn>
         <v-btn
           :to="{path: '/about'}"
           flat
-          dark>
+          dark
+        >
           <v-icon>info</v-icon>
         </v-btn>
       </v-toolbar-items>

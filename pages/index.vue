@@ -2,18 +2,20 @@
   <v-layout
     column
     justify-center
-    align-center>
+    align-center
+  >
     <v-flex
       xs12
       sm8
-      md6>
+      md6
+    >
       <div class="text-xs-center">
-        <aozora-logo/>
+        <aozora-logo />
         <h2>インターネットの電子図書館、青空文庫へようこそ。</h2>
       </div>
     </v-flex>
     <v-container>
-      <search/>
+      <search />
     </v-container>
   </v-layout>
 </template>

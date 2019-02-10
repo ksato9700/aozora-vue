@@ -2,10 +2,12 @@
   <v-layout
     column
     justify-center
-    align-center>
+    align-center
+  >
     <book-card
       :book="book"
-      :items="items"/>
+      :items="items"
+    />
   </v-layout>
 </template>
 

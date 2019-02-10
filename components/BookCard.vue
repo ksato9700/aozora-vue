@@ -1,7 +1,8 @@
 <template>
   <v-container
     fluid
-    grid-list-md>
+    grid-list-md
+  >
     <v-data-iterator
       :rows-per-page-items="rowsPerPageItems"
       :pagination.sync="pagination"
@@ -9,13 +10,15 @@
       content-tag="v-layout"
       hide-actions
       row
-      wrap>
+      wrap
+    >
       <v-toolbar
         slot="header"
         class="mb-2"
         color="#000063"
         dark
-        flat>
+        flat
+      >
         <v-toolbar-title>
           <ruby>
             {{ book.title }}<rt>{{ book.title_yomi }}</rt>
@@ -26,17 +29,18 @@
         slot="item"
         slot-scope="props"
         xs12
-        sm6>
+        sm6
+      >
         <v-card>
           <v-card-title class="subheading font-weight-bold">
             {{ props.item.title }}
           </v-card-title>
-          <v-divider/>
+          <v-divider />
           <v-list dense>
             <template
-              v-for="(field,index) in props.item.fields">
-              <v-list-tile
-                :key="index">
+              v-for="(field,index) in props.item.fields"
+            >
+              <v-list-tile :key="index">
                 <v-list-tile-content>{{ field.name }}：</v-list-tile-content>
                 <v-list-tile-content class="text-xs-right">
                   {{ field.value }}

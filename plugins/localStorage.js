@@ -2,7 +2,7 @@ import createPersistedState from 'vuex-persistedstate'
 
 export default ({ store }) => {
   if (process.client) {
-    window.onNuxtReady(nuxt => {
+    window.onNuxtReady(() => {
       createPersistedState()(store)
     })
   }

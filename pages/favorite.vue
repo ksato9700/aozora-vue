@@ -2,7 +2,8 @@
   <v-layout
     column
     justify-center
-    align-center>
+    align-center
+  >
     <v-container>
       <favorite :books="books" />
     </v-container>
