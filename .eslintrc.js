@@ -2,7 +2,8 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    node: true
+    node: true,
+    'cypress/globals': true,
   },
   parserOptions: {
     parser: 'babel-eslint'
@@ -10,12 +11,14 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:vue/recommended',
+    "plugin:cypress/recommended"
 //    'plugin:prettier/recommended'
   ],
   // required to lint *.vue files
   plugins: [
     'vue',
-    'prettier'
+//    'prettier',
+    'cypress',
   ],
   // add your custom rules here
   rules: {

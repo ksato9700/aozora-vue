@@ -9,6 +9,7 @@
       v-model="keyword"
       box
       append-icon="search"
+      data-cy='search_input'
       placeholder="作品名・著者名"
       @click:append="submit"
     />
