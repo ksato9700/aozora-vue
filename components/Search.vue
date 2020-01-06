@@ -1,15 +1,10 @@
 <template>
-  <v-form
-    ref="searchForm"
-    class="lighten-3 pa-2"
-    lazy-validation
-    @submit.prevent="submit"
-  >
+  <v-form ref="searchForm" class="lighten-3 pa-2" lazy-validation @submit.prevent="submit">
     <v-text-field
       v-model="keyword"
       box
       append-icon="search"
-      data-cy='search_input'
+      data-cy="search_input"
       placeholder="作品名・著者名"
       @click:append="submit"
     />

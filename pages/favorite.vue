@@ -1,9 +1,5 @@
 <template>
-  <v-layout
-    column
-    justify-center
-    align-center
-  >
+  <v-layout column justify-center align-center>
     <v-container>
       <favorite :books="books" />
     </v-container>
@@ -27,15 +23,15 @@ export default {
   components: {
     Favorite
   },
-  async asyncData({ app, store }) {
-    return await find_books(app.$axios, store.state.stars.list)
-  },
   watch: {
     '$store.state.stars.list': function() {
       find_books(this.$axios, this.$store.state.stars.list).then(res => {
         this.books = res.books
       })
     }
+  },
+  async asyncData({ app, store }) {
+    return await find_books(app.$axios, store.state.stars.list)
   }
 }
 </script>
